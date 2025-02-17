@@ -1,0 +1,119 @@
+
+body {
+    background-image: linear-gradient(rgb(201, 175, 5) , rgb(10, 8, 8));
+    font-family: Arial, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    flex-direction: column;
+    margin-bottom: 600px;
+}
+
+
+.container-box {
+    width: 400px;
+    padding: 100px;
+    background: #978806;
+    border-radius: 10px;
+    
+    text-align: center;
+
+    transition:  2s ;
+}
+.container-box:hover{
+
+    
+    background: none;
+    transition:2s;
+    
+
+}
+
+.fares {
+
+    color: #ffffff;
+}
+.container-box input {
+    width: 100%;
+    padding: 10px;
+    margin: 5px 0;
+    border: 1px solid #cccccc;
+    border-radius: 5px;
+    font-size: 16px;
+}
+.btn-custom {
+    width: 100%;
+    background:#ffffff;
+    color: rgb(205, 143, 8);
+    padding: 10px;
+    margin-top: 20px;
+    margin-left: 10px;
+    
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: 0.3s;
+    text-align: center;
+    
+    
+}
+
+
+
+
+ .logo1 {
+   
+   width: 10%;
+   margin-bottom: 200px;
+   margin-right: 1000px;
+
+ 
+   
+  
+
+    
+
+}
+
+.btn-custom:hover {
+    background: #a99d02;
+    color: #ffffff;
+    transition: 2s;
+   
+}
+.id-card {
+    display: none;
+    background:#aa8e03;
+    padding: 120px;
+    border-radius: 20px;
+    text-align: center;
+    width: 320px;
+    color: #ffffff;
+    margin-top: 20px;
+    transition: 2s;
+    
+}
+
+.id-card:hover{
+
+    background: none;
+    transition: 2s;
+   
+}
+
+
+.id-card img {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 3px solid #1e3c72;
+}
+.footer-text {
+    margin-top: 20px;
+    font-size: 14px;
+    color: #ffffff;
+    font-weight: bold;
+}
