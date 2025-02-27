@@ -1,126 +1,349 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ar">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Khalid Samir - CV</title>
+    <title>نظام إدارة عيادة</title>
     <style>
-        body {
-            font-family: Arial, sans-serif;
+        * {
             margin: 0;
             padding: 0;
-            background-color: #f4f4f4;
-            color: #333;
+            box-sizing: border-box;
         }
-        .container {
-            width: 80%;
-            margin: 20px auto;
-            background: #fff;
-            padding: 20px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-        }
-        h1, h2, h3 {
-            color: #0073e6;
-        }
-        .header {
-            text-align: center;
-            margin-bottom: 20px;
-        }
-        .header h1 {
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f9f9f9;
             margin: 0;
+            padding: 0;
+        }
+        header {
+            background-color: #00796b;
+            color: white;
+            text-align: center;
+            padding: 15px;
             font-size: 24px;
         }
-        .header p {
-            margin: 5px 0;
+        nav {
+            background-color: #00796b;
+            padding: 10px 0;
+            text-align: center;
+        }
+        nav a {
+            color: white;
+            margin: 0 20px;
+            text-decoration: none;
             font-size: 18px;
-            color: #555;
+            font-weight: bold;
         }
-        .section {
-            margin-bottom: 20px;
+        nav a:hover {
+            text-decoration: underline;
         }
-        .section h2 {
-            border-bottom: 2px solid #0073e6;
-            padding-bottom: 5px;
-            font-size: 20px;
+        .page {
+            display: none;
+            padding: 20px;
         }
-        .section ul {
-            list-style: none;
-            padding: 0;
+        .form-container {
+            background-color: #fff;
+            padding: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            margin: 20px auto;
+            width: 60%;
         }
-        .section ul li {
-            background: #f9f9f9;
+        input, button {
+            width: 100%;
+            padding: 12px;
             margin: 10px 0;
-            padding: 10px;
-            border-left: 4px solid #0073e6;
+            border-radius: 5px;
+            border: 1px solid #ddd;
         }
-        .contact-info {
-            background: #f9f9f9;
-            padding: 15px;
-            border-left: 4px solid #0073e6;
-            margin-bottom: 20px;
+        button {
+            background-color: #00796b;
+            color: white;
+            border: none;
+            cursor: pointer;
         }
-        .contact-info p {
-            margin: 5px 0;
+        button:hover {
+            background-color: #004d40;
         }
-        .skills ul {
-            columns: 2;
-            -webkit-columns: 2;
-            -moz-columns: 2;
+        table {
+            width: 80%;
+            margin: 20px auto;
+            border-collapse: collapse;
+        }
+        th, td {
+            padding: 12px;
+            text-align: center;
+            border: 1px solid #ddd;
+        }
+        th {
+            background-color: #00796b;
+            color: white;
+        }
+        .btn-add {
+            background-color: #00796b;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+        }
+        .btn-add:hover {
+            background-color: #004d40;
+        }
+        .btn-back {
+            background-color: #ddd;
+            color: #00796b;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+            font-weight: bold;
+            margin-top: 15px;
+            border-radius: 5px;
+        }
+        .btn-back:hover {
+            background-color: #bbb;
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <div class="header">
-            <h1>Khalid Samir</h1>
-            <pre>
-<h3># Data Entry
-# Programmer
-    <h3>
-            </pre>
-        </div>
 
-        <div class="section">
-            <h2>Profile</h2>
-            <p>I'm Khaled Samir, an IT student at Borg El Arab Technological University. Passionate about technology and programming, I've worked as a Warehouse Clerk, Data Entry Operator (ASCON), Health and Safety Engineer, and Programmer. Skilled in Microsoft Office (Word, Excel, PowerPoint, Access), I thrive under pressure and seek growth opportunities.</p>
-        </div>
+<header>
+    <h1>نظام إدارة عيادة</h1>
+</header>
 
-        <div class="section">
-            <h2>Work Experience</h2>
-            <ul>
-                <li>
-                    <h3>Badawi Group - Occupational Health and Safety Officer</h3>
-                    <p>Jan 2021 - 2023</p>
-                    <p>Responsible for occupational health and safety within the Hassan Allam project at Badawi Sons Company.</p>
-                </li>
-                <li>
-                    <h3>Family Contracting - Storekeeper/Data Entry</h3>
-                    <p>2023 - 2025</p>
-                    <p>Worked as a storekeeper and data entry operator using the ASCON system to manage store data, purchases, imports, and exports.</p>
-                </li>
-            </ul>
-        </div>
+<nav>
+    <a href="#patients" onclick="showPage('patients')">المرضى</a>
+    <a href="#appointments" onclick="showPage('appointments')">المواعيد</a>
+    <a href="#bills" onclick="showPage('bills')">الفواتير</a>
+</nav>
 
-        <div class="contact-info">
-            <h2>Contact</h2>
-            <p>Email: khlidsmir3@gmail.com</p>
-            <p>Phone: 01200233812 - 01062249698</p>
-            <p>Address: Burj Al Arab City, Alexandria</p>
-        </div>
+<!-- صفحة المرضى -->
+<div id="patients" class="page">
+    <h2>إدارة المرضى</h2>
+    <button class="btn-add" onclick="showAddPatientForm()">إضافة مريض جديد</button>
+    <table id="patientsTable">
+        <thead>
+            <tr>
+                <th>الاسم</th>
+                <th>الهاتف</th>
+                <th>البريد الإلكتروني</th>
+                <th>تاريخ الميلاد</th>
+            </tr>
+        </thead>
+        <tbody></tbody>
+    </table>
+</div>
 
-        <div class="section skills">
-            <h2>Skills</h2>
-            <ul>
-                <li>Management Skills</li>
-                <li>Data Entry</li>
-                <li>Programming in C</li>
-                <li>Programming in Python</li>
-                <li>Work Under Pressure</li>
-                <li>Critical Thinking</li>
-                <li>Communication Skills</li>
-                <li>Team Collaboration</li>
-            </ul>
-        </div>
-    </div>
+<!-- صفحة المواعيد -->
+<div id="appointments" class="page">
+    <h2>إدارة المواعيد</h2>
+    <button class="btn-add" onclick="showAddAppointmentForm()">إضافة موعد جديد</button>
+    <table id="appointmentsTable">
+        <thead>
+            <tr>
+                <th>اسم المريض</th>
+                <th>اسم الطبيب</th>
+                <th>تاريخ الموعد</th>
+            </tr>
+        </thead>
+        <tbody></tbody>
+    </table>
+</div>
+
+<!-- صفحة الفواتير -->
+<div id="bills" class="page">
+    <h2>إدارة الفواتير</h2>
+    <button class="btn-add" onclick="showAddBillForm()">إضافة فاتورة جديدة</button>
+    <table id="billsTable">
+        <thead>
+            <tr>
+                <th>اسم المريض</th>
+                <th>المبلغ</th>
+                <th>حالة الدفع</th>
+            </tr>
+        </thead>
+        <tbody></tbody>
+    </table>
+</div>
+
+<!-- نموذج إضافة مريض -->
+<div id="addPatientForm" class="form-container" style="display:none;">
+    <h3>إضافة مريض</h3>
+    <input type="text" id="patientName" placeholder="اسم المريض" required>
+    <input type="text" id="patientPhone" placeholder="رقم الهاتف" required>
+    <input type="email" id="patientEmail" placeholder="البريد الإلكتروني" required>
+    <input type="date" id="patientBirthDate" required>
+    <button onclick="addPatient()">إضافة</button>
+    <button class="btn-back" onclick="hideForm('addPatientForm')">إلغاء</button>
+</div>
+
+<!-- نموذج إضافة موعد -->
+<div id="addAppointmentForm" class="form-container" style="display:none;">
+    <h3>إضافة موعد</h3>
+    <input type="text" id="appointmentPatient" placeholder="اسم المريض" required>
+    <input type="text" id="appointmentDoctor" placeholder="اسم الطبيب" required>
+    <input type="date" id="appointmentDate" required>
+    <button onclick="addAppointment()">إضافة</button>
+    <button class="btn-back" onclick="hideForm('addAppointmentForm')">إلغاء</button>
+</div>
+
+<!-- نموذج إضافة فاتورة -->
+<div id="addBillForm" class="form-container" style="display:none;">
+    <h3>إضافة فاتورة</h3>
+    <input type="text" id="billPatient" placeholder="اسم المريض" required>
+    <input type="number" id="billAmount" placeholder="المبلغ" required>
+    <input type="text" id="billStatus" placeholder="حالة الدفع" required>
+    <button onclick="addBill()">إضافة</button>
+    <button class="btn-back" onclick="hideForm('addBillForm')">إلغاء</button>
+</div>
+
+<script>
+    // تحميل البيانات من التخزين المحلي
+    function loadFromStorage(key) {
+        return JSON.parse(localStorage.getItem(key)) || [];
+    }
+
+    // حفظ البيانات إلى التخزين المحلي
+    function saveToStorage(key, data) {
+        localStorage.setItem(key, JSON.stringify(data));
+    }
+
+    // عرض الصفحة المحددة
+    function showPage(page) {
+        const pages = document.querySelectorAll('.page');
+        pages.forEach(p => p.style.display = 'none');
+        document.getElementById(page).style.display = 'block';
+    }
+
+    // إخفاء النماذج
+    function hideForm(formId) {
+        document.getElementById(formId).style.display = 'none';
+    }
+
+    // إضافة مريض
+    function showAddPatientForm() {
+        document.getElementById('addPatientForm').style.display = 'block';
+    }
+
+    function addPatient() {
+        const name = document.getElementById('patientName').value;
+        const phone = document.getElementById('patientPhone').value;
+        const email = document.getElementById('patientEmail').value;
+        const birthDate = document.getElementById('patientBirthDate').value;
+
+        if (name && phone && email && birthDate) {
+            const patients = loadFromStorage('patients');
+            patients.push({ name, phone, email, birthDate });
+            saveToStorage('patients', patients);
+
+            renderPatientsTable();
+            hideForm('addPatientForm');
+        } else {
+            alert("الرجاء ملء جميع الحقول.");
+        }
+    }
+
+    function renderPatientsTable() {
+        const patients = loadFromStorage('patients');
+        const tableBody = document.getElementById('patientsTable').querySelector('tbody');
+        tableBody.innerHTML = '';
+
+        patients.forEach(patient => {
+            const row = document.createElement('tr');
+            row.innerHTML = `
+                <td>${patient.name}</td>
+                <td>${patient.phone}</td>
+                <td>${patient.email}</td>
+                <td>${patient.birthDate}</td>
+            `;
+            tableBody.appendChild(row);
+        });
+    }
+
+    // إضافة موعد
+    function showAddAppointmentForm() {
+        document.getElementById('addAppointmentForm').style.display = 'block';
+    }
+
+    function addAppointment() {
+        const patient = document.getElementById('appointmentPatient').value;
+        const doctor = document.getElementById('appointmentDoctor').value;
+        const date = document.getElementById('appointmentDate').value;
+
+        if (patient && doctor && date) {
+            const appointments = loadFromStorage('appointments');
+            appointments.push({ patient, doctor, date });
+            saveToStorage('appointments', appointments);
+
+            renderAppointmentsTable();
+            hideForm('addAppointmentForm');
+        } else {
+            alert("الرجاء ملء جميع الحقول.");
+        }
+    }
+
+    function renderAppointmentsTable() {
+        const appointments = loadFromStorage('appointments');
+        const tableBody = document.getElementById('appointmentsTable').querySelector('tbody');
+        tableBody.innerHTML = '';
+
+        appointments.forEach(appointment => {
+            const row = document.createElement('tr');
+            row.innerHTML = `
+                <td>${appointment.patient}</td>
+                <td>${appointment.doctor}</td>
+                <td>${appointment.date}</td>
+            `;
+            tableBody.appendChild(row);
+        });
+    }
+
+    // إضافة فاتورة
+    function showAddBillForm() {
+        document.getElementById('addBillForm').style.display = 'block';
+    }
+
+    function addBill() {
+        const patient = document.getElementById('billPatient').value;
+        const amount = document.getElementById('billAmount').value;
+        const status = document.getElementById('billStatus').value;
+
+        if (patient && amount && status) {
+            const bills = loadFromStorage('bills');
+            bills.push({ patient, amount, status });
+            saveToStorage('bills', bills);
+
+            renderBillsTable();
+            hideForm('addBillForm');
+        } else {
+            alert("الرجاء ملء جميع الحقول.");
+        }
+    }
+
+    function renderBillsTable() {
+        const bills = loadFromStorage('bills');
+        const tableBody = document.getElementById('billsTable').querySelector('tbody');
+        tableBody.innerHTML = '';
+
+        bills.forEach(bill => {
+            const row = document.createElement('tr');
+            row.innerHTML = `
+                <td>${bill.patient}</td>
+                <td>${bill.amount}</td>
+                <td>${bill.status}</td>
+            `;
+            tableBody.appendChild(row);
+        });
+    }
+
+    // تحميل البيانات في البداية
+    renderPatientsTable();
+    renderAppointmentsTable();
+    renderBillsTable();
+</script>
+
 </body>
-</html>
+        </html>
