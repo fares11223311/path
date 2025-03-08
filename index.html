@@ -1,349 +1,235 @@
 <!DOCTYPE html>
-<html lang="ar">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>نظام إدارة عيادة</title>
+    <title>Aya - Khalid's Love Messages ❤️</title>
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&display=swap');
+
         body {
-            font-family: 'Arial', sans-serif;
-            background-color: #f9f9f9;
+            font-family: 'Playfair Display', serif;
+            background: linear-gradient(to right, #ff758c, #ff7eb3);
+            color: white;
+            text-align: center;
             margin: 0;
             padding: 0;
+            overflow-x: hidden;
+            min-height: 100vh;
         }
-        header {
-            background-color: #00796b;
-            color: white;
-            text-align: center;
-            padding: 15px;
-            font-size: 24px;
-        }
-        nav {
-            background-color: #00796b;
-            padding: 10px 0;
-            text-align: center;
-        }
-        nav a {
-            color: white;
-            margin: 0 20px;
-            text-decoration: none;
-            font-size: 18px;
-            font-weight: bold;
-        }
-        nav a:hover {
-            text-decoration: underline;
-        }
-        .page {
-            display: none;
-            padding: 20px;
-        }
-        .form-container {
-            background-color: #fff;
-            padding: 20px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            border-radius: 8px;
-            margin: 20px auto;
-            width: 60%;
-        }
-        input, button {
+
+        .login-container {
+            position: fixed;
             width: 100%;
-            padding: 12px;
-            margin: 10px 0;
-            border-radius: 5px;
-            border: 1px solid #ddd;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
-        button {
-            background-color: #00796b;
-            color: white;
-            border: none;
-            cursor: pointer;
-        }
-        button:hover {
-            background-color: #004d40;
-        }
-        table {
-            width: 80%;
-            margin: 20px auto;
-            border-collapse: collapse;
-        }
-        th, td {
-            padding: 12px;
+
+        .login-box {
+            background: white;
+            color: black;
+            padding: 30px;
+            border-radius: 10px;
             text-align: center;
-            border: 1px solid #ddd;
+            box-shadow: 0px 0px 10px rgba(255, 255, 255, 0.2);
         }
-        th {
-            background-color: #00796b;
-            color: white;
-        }
-        .btn-add {
-            background-color: #00796b;
-            color: white;
-            border: none;
-            padding: 10px 20px;
-            cursor: pointer;
-            text-decoration: none;
-            border-radius: 5px;
-            font-weight: bold;
-        }
-        .btn-add:hover {
-            background-color: #004d40;
-        }
-        .btn-back {
-            background-color: #ddd;
-            color: #00796b;
-            border: none;
-            padding: 10px 20px;
-            cursor: pointer;
-            font-weight: bold;
-            margin-top: 15px;
+
+        .login-box input {
+            padding: 10px;
+            margin: 10px;
+            width: 80%;
+            border: 1px solid #ff758c;
             border-radius: 5px;
         }
-        .btn-back:hover {
-            background-color: #bbb;
+
+        .header {
+            padding: 15px;
+            font-size: 22px;
+            font-weight: bold;
+            background: rgba(255, 20, 147, 0.8);
         }
+
+        .music-control {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: white;
+            color: deeppink;
+            border: none;
+            padding: 5px 10px;
+            border-radius: 50%;
+            font-size: 12px;
+            cursor: pointer;
+        }
+
+        .poems-container {
+            max-width: 700px;
+            margin: auto;
+            padding-bottom: 60px;
+        }
+
+        .poem-box {
+            width: 85%;
+            margin: 15px auto;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 15px;
+            font-size: 18px;
+            line-height: 1.6;
+            position: relative;
+        }
+
+        .poem-box.new-message {
+            background: rgba(255, 255, 100, 0.6);
+            color: black;
+        }
+
+        .delete-btn {
+            position: absolute;
+            top: 5px;
+            right: 5px;
+            background: red;
+            color: white;
+            border: none;
+            padding: 3px 6px;
+            font-size: 10px;
+            cursor: pointer;
+            border-radius: 50%;
+        }
+
+        .input-container {
+            margin: 20px auto;
+            max-width: 500px;
+        }
+
+        .message-input {
+            width: 70%;
+            padding: 10px;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+        }
+
     </style>
 </head>
 <body>
 
-<header>
-    <h1>نظام إدارة عيادة</h1>
-</header>
+    <div class="login-container" id="login-container">
+        <div class="login-box">
+            <h2>Login</h2>
+            <input type="text" id="username" placeholder="Username"><br>
+            <input type="password" id="password" placeholder="Password"><br>
+            <button onclick="checkLogin()">Login</button>
+        </div>
+    </div>
 
-<nav>
-    <a href="#patients" onclick="showPage('patients')">المرضى</a>
-    <a href="#appointments" onclick="showPage('appointments')">المواعيد</a>
-    <a href="#bills" onclick="showPage('bills')">الفواتير</a>
-</nav>
+    <div id="content" style="display: none;" onclick="createHeart(event)">
 
-<!-- صفحة المرضى -->
-<div id="patients" class="page">
-    <h2>إدارة المرضى</h2>
-    <button class="btn-add" onclick="showAddPatientForm()">إضافة مريض جديد</button>
-    <table id="patientsTable">
-        <thead>
-            <tr>
-                <th>الاسم</th>
-                <th>الهاتف</th>
-                <th>البريد الإلكتروني</th>
-                <th>تاريخ الميلاد</th>
-            </tr>
-        </thead>
-        <tbody></tbody>
-    </table>
-</div>
+        <div class="header">
+            ❤️ Khalid's Love Messages for Aya ❤️
+        </div>
 
-<!-- صفحة المواعيد -->
-<div id="appointments" class="page">
-    <h2>إدارة المواعيد</h2>
-    <button class="btn-add" onclick="showAddAppointmentForm()">إضافة موعد جديد</button>
-    <table id="appointmentsTable">
-        <thead>
-            <tr>
-                <th>اسم المريض</th>
-                <th>اسم الطبيب</th>
-                <th>تاريخ الموعد</th>
-            </tr>
-        </thead>
-        <tbody></tbody>
-    </table>
-</div>
+        <button class="music-control" onclick="toggleMusic()">🎵</button>
 
-<!-- صفحة الفواتير -->
-<div id="bills" class="page">
-    <h2>إدارة الفواتير</h2>
-    <button class="btn-add" onclick="showAddBillForm()">إضافة فاتورة جديدة</button>
-    <table id="billsTable">
-        <thead>
-            <tr>
-                <th>اسم المريض</th>
-                <th>المبلغ</th>
-                <th>حالة الدفع</th>
-            </tr>
-        </thead>
-        <tbody></tbody>
-    </table>
-</div>
+        <audio id="bg-music" autoplay loop>
+            <source src="https://www.bensound.com/bensound-music/bensound-love.mp3" type="audio/mpeg">
+            Your browser does not support the audio element.
+        </audio>
 
-<!-- نموذج إضافة مريض -->
-<div id="addPatientForm" class="form-container" style="display:none;">
-    <h3>إضافة مريض</h3>
-    <input type="text" id="patientName" placeholder="اسم المريض" required>
-    <input type="text" id="patientPhone" placeholder="رقم الهاتف" required>
-    <input type="email" id="patientEmail" placeholder="البريد الإلكتروني" required>
-    <input type="date" id="patientBirthDate" required>
-    <button onclick="addPatient()">إضافة</button>
-    <button class="btn-back" onclick="hideForm('addPatientForm')">إلغاء</button>
-</div>
+        <div class="input-container">
+            <input type="text" id="newMessage" class="message-input" placeholder="Type a new love message...">
+            <button class="add-message-btn" onclick="addMessage()">💌 Add Message</button>
+        </div>
 
-<!-- نموذج إضافة موعد -->
-<div id="addAppointmentForm" class="form-container" style="display:none;">
-    <h3>إضافة موعد</h3>
-    <input type="text" id="appointmentPatient" placeholder="اسم المريض" required>
-    <input type="text" id="appointmentDoctor" placeholder="اسم الطبيب" required>
-    <input type="date" id="appointmentDate" required>
-    <button onclick="addAppointment()">إضافة</button>
-    <button class="btn-back" onclick="hideForm('addAppointmentForm')">إلغاء</button>
-</div>
+        <div class="poems-container" id="poems"></div>
 
-<!-- نموذج إضافة فاتورة -->
-<div id="addBillForm" class="form-container" style="display:none;">
-    <h3>إضافة فاتورة</h3>
-    <input type="text" id="billPatient" placeholder="اسم المريض" required>
-    <input type="number" id="billAmount" placeholder="المبلغ" required>
-    <input type="text" id="billStatus" placeholder="حالة الدفع" required>
-    <button onclick="addBill()">إضافة</button>
-    <button class="btn-back" onclick="hideForm('addBillForm')">إلغاء</button>
-</div>
+    </div>
 
-<script>
-    // تحميل البيانات من التخزين المحلي
-    function loadFromStorage(key) {
-        return JSON.parse(localStorage.getItem(key)) || [];
-    }
-
-    // حفظ البيانات إلى التخزين المحلي
-    function saveToStorage(key, data) {
-        localStorage.setItem(key, JSON.stringify(data));
-    }
-
-    // عرض الصفحة المحددة
-    function showPage(page) {
-        const pages = document.querySelectorAll('.page');
-        pages.forEach(p => p.style.display = 'none');
-        document.getElementById(page).style.display = 'block';
-    }
-
-    // إخفاء النماذج
-    function hideForm(formId) {
-        document.getElementById(formId).style.display = 'none';
-    }
-
-    // إضافة مريض
-    function showAddPatientForm() {
-        document.getElementById('addPatientForm').style.display = 'block';
-    }
-
-    function addPatient() {
-        const name = document.getElementById('patientName').value;
-        const phone = document.getElementById('patientPhone').value;
-        const email = document.getElementById('patientEmail').value;
-        const birthDate = document.getElementById('patientBirthDate').value;
-
-        if (name && phone && email && birthDate) {
-            const patients = loadFromStorage('patients');
-            patients.push({ name, phone, email, birthDate });
-            saveToStorage('patients', patients);
-
-            renderPatientsTable();
-            hideForm('addPatientForm');
-        } else {
-            alert("الرجاء ملء جميع الحقول.");
+    <script>
+        function checkLogin() {
+            let user = document.getElementById("username").value;
+            let pass = document.getElementById("password").value;
+            if (user === "aya" && pass === "2008") {
+                document.getElementById("login-container").style.display = "none";
+                document.getElementById("content").style.display = "block";
+            } else {
+                alert("Incorrect username or password!");
+            }
         }
-    }
 
-    function renderPatientsTable() {
-        const patients = loadFromStorage('patients');
-        const tableBody = document.getElementById('patientsTable').querySelector('tbody');
-        tableBody.innerHTML = '';
-
-        patients.forEach(patient => {
-            const row = document.createElement('tr');
-            row.innerHTML = `
-                <td>${patient.name}</td>
-                <td>${patient.phone}</td>
-                <td>${patient.email}</td>
-                <td>${patient.birthDate}</td>
-            `;
-            tableBody.appendChild(row);
-        });
-    }
-
-    // إضافة موعد
-    function showAddAppointmentForm() {
-        document.getElementById('addAppointmentForm').style.display = 'block';
-    }
-
-    function addAppointment() {
-        const patient = document.getElementById('appointmentPatient').value;
-        const doctor = document.getElementById('appointmentDoctor').value;
-        const date = document.getElementById('appointmentDate').value;
-
-        if (patient && doctor && date) {
-            const appointments = loadFromStorage('appointments');
-            appointments.push({ patient, doctor, date });
-            saveToStorage('appointments', appointments);
-
-            renderAppointmentsTable();
-            hideForm('addAppointmentForm');
-        } else {
-            alert("الرجاء ملء جميع الحقول.");
+        function toggleMusic() {
+            var audio = document.getElementById("bg-music");
+            if (audio.paused) {
+                audio.play();
+            } else {
+                audio.pause();
+            }
         }
-    }
 
-    function renderAppointmentsTable() {
-        const appointments = loadFromStorage('appointments');
-        const tableBody = document.getElementById('appointmentsTable').querySelector('tbody');
-        tableBody.innerHTML = '';
-
-        appointments.forEach(appointment => {
-            const row = document.createElement('tr');
-            row.innerHTML = `
-                <td>${appointment.patient}</td>
-                <td>${appointment.doctor}</td>
-                <td>${appointment.date}</td>
-            `;
-            tableBody.appendChild(row);
-        });
-    }
-
-    // إضافة فاتورة
-    function showAddBillForm() {
-        document.getElementById('addBillForm').style.display = 'block';
-    }
-
-    function addBill() {
-        const patient = document.getElementById('billPatient').value;
-        const amount = document.getElementById('billAmount').value;
-        const status = document.getElementById('billStatus').value;
-
-        if (patient && amount && status) {
-            const bills = loadFromStorage('bills');
-            bills.push({ patient, amount, status });
-            saveToStorage('bills', bills);
-
-            renderBillsTable();
-            hideForm('addBillForm');
-        } else {
-            alert("الرجاء ملء جميع الحقول.");
+        function createHeart(event) {
+            let heart = document.createElement("div");
+            heart.className = "heart";
+            heart.innerHTML = "❤️";
+            heart.style.left = event.clientX + "px";
+            heart.style.top = event.clientY + "px";
+            document.body.appendChild(heart);
+            setTimeout(() => heart.remove(), 4000);
         }
-    }
 
-    function renderBillsTable() {
-        const bills = loadFromStorage('bills');
-        const tableBody = document.getElementById('billsTable').querySelector('tbody');
-        tableBody.innerHTML = '';
+        function startLove() {
+            const poems = [
+                "أحبك عدد النجوم التي في السماء!",
+                "لو كنت زهرة، لكنت أجمل وردة في البستان!",
+                "أنتِ الحب الذي لا ينتهي، والنور الذي لا ينطفئ!",
+                "كل لحظة تمر، أحبكِ أكثر!",
+                "أنتِ القمر الذي ينير لياليَّ!",
+                "أحبكِ بلا حدود، بلا منطق، بلا نهاية!",
+                "كل النجوم لا تساوي بريق عينيكِ!",
+                "كل دقيقة بدونكِ هي ضياع!",
+                "أنتِ أعظم شيء حدث في حياتي!",
+                "أنتِ الحلم الذي لم أكن أعرف أنني بحاجة إليه!",
+                "ضحكتكِ هي أغلى ما أملك!",
+                "كل لحظة معك هي حياة جديدة!",
+                "أحبكِ كأنكِ الهواء الذي أتنفسه!",
+                "أنتِ المعجزة التي كنت أبحث عنها!",
+                "أنتِ نجمتي في سماء الحب!"
+            ];
 
-        bills.forEach(bill => {
-            const row = document.createElement('tr');
-            row.innerHTML = `
-                <td>${bill.patient}</td>
-                <td>${bill.amount}</td>
-                <td>${bill.status}</td>
-            `;
-            tableBody.appendChild(row);
-        });
-    }
+            let container = document.getElementById("poems");
+            for (let i = 0; i < 600; i++) {
+                let box = document.createElement("div");
+                box.className = "poem-box";
+                box.innerHTML = poems[Math.floor(Math.random() * poems.length)];
+                container.appendChild(box);
+            }
+        }
 
-    // تحميل البيانات في البداية
-    renderPatientsTable();
-    renderAppointmentsTable();
-    renderBillsTable();
-</script>
+        function addMessage() {
+            let newMessage = document.getElementById("newMessage").value.trim();
+            if (newMessage === "") return;
+
+            let container = document.getElementById("poems");
+            let box = document.createElement("div");
+            box.className = "poem-box new-message";
+            box.innerHTML = newMessage;
+
+            let deleteBtn = document.createElement("button");
+            deleteBtn.className = "delete-btn";
+            deleteBtn.innerHTML = "✖";
+            deleteBtn.onclick = function () {
+                box.remove();
+            };
+
+            box.appendChild(deleteBtn);
+            container.prepend(box);
+            document.getElementById("newMessage").value = "";
+        }
+
+        startLove();
+    </script>
 
 </body>
-        </html>
+</html>
